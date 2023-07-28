@@ -1,4 +1,5 @@
--------- part 1: pull for all sellers cased by macro event rules (test/manual/control)
+-------- both "test vs control" and "optional ssp vs delayed freeze ssp" included in the query --------
+-------- part 1: pull for all sellers cased by macro event rules (test/manual/control) ----------
 --test population
 create or replace table app_risk.app_risk_test.dnb_macro_sellers_crss_v2 as
 select 
@@ -116,7 +117,7 @@ control	121	121
 test	5,598	5,597
 ;
 
--------- test vs control analysis -------
+-------- part 2: test vs control analysis -------
 -- action rate and completion rate after case created
 create or replace table app_risk.app_risk_test.test_control_analysis_load1_v2 as
 select 
@@ -232,7 +233,7 @@ test	5,597	5,597
 ;
 
 
----------- optional ssp vs delayed ssp analysis --------
+---------- part 3: optional ssp vs delayed ssp analysis --------
 -- action rate and completion rate after ssp sent
 create or replace table app_risk.app_risk_test.ssp_analysis_load1_v2 as
 select 
@@ -341,7 +342,7 @@ COUNT(*)	COUNT(DISTINCT USER_TOKEN)	SUM(RULE_FLAGGED)
 ;
 
 
----------- pull raw data for results
+---------- part 4: pull raw data for results
 select * 
 from app_risk.app_risk_test.test_control_analysis_load4_profit_v2
 ;
